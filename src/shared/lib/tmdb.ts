@@ -27,12 +27,16 @@ export function getTmdbClient(): TMDB {
   if (tmdbClient && currentToken === token) {
     return tmdbClient
   }
-  tmdbClient = new TMDB(token)
+   tmdbClient = new TMDB(token, {
+    baseUrl: 'https://tmdb.melonhu.cn/3',
+  })
   currentToken = token
   return tmdbClient
 }
 
-export const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/'
+export const TMDB_IMAGE_BASE =
+  import.meta.env.VITE_TMDB_IMAGE_BASE ||
+  'https://tmdb.melonhu.cn/t/p/'
 
 const POSTER_SIZE_MAP = { low: 'w342', medium: 'w500', high: 'w780' } as const
 const BACKDROP_SIZE_MAP = { low: 'w780', medium: 'w1280', high: 'original' } as const
