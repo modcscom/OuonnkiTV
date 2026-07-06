@@ -5,6 +5,30 @@
 // 移动端优先展示的常用国家（6个）
 export const POPULAR_COUNTRIES_MOBILE = ['CN', 'US', 'JP', 'KR', 'HK', 'TW']
 
+// 桌面端优先展示的常用国家/地区（中国人常看的欧亚及主要影视产地，共20个）
+export const POPULAR_COUNTRIES_DESKTOP = [
+  'CN',
+  'US',
+  'JP',
+  'KR',
+  'HK',
+  'TW',
+  'GB',
+  'FR',
+  'DE',
+  'IT',
+  'ES',
+  'RU',
+  'IN',
+  'TH',
+  'CA',
+  'AU',
+  'SG',
+  'MY',
+  'PH',
+  'VN',
+]
+
 // 国家中文名称映射
 export const COUNTRY_CHINESE_NAMES: Readonly<Record<string, string>> = {
   CN: '中国大陆',

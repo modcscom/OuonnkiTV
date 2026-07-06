@@ -10,7 +10,11 @@ import {
   DrawerTrigger,
 } from '@/shared/components/ui/drawer'
 import { FilterChip } from './MediaTypeFilter'
-import { getCountryChineseName, POPULAR_COUNTRIES_MOBILE } from '../../constants'
+import {
+  getCountryChineseName,
+  POPULAR_COUNTRIES_DESKTOP,
+  POPULAR_COUNTRIES_MOBILE,
+} from '../../constants'
 
 interface CountryFilterProps {
   /** 国家列表 */
@@ -32,10 +36,10 @@ export function CountryFilter({
 }: CountryFilterProps) {
   const [isCountryDrawerOpen, setIsCountryDrawerOpen] = useState(false)
 
-  // 排序国家列表，常用国家优先
+  // 排序国家列表，桌面端按中国人常看区域优先展示
   const sortedCountries = [...countries].sort((a, b) => {
-    const aIndex = POPULAR_COUNTRIES_MOBILE.indexOf(a.iso_3166_1)
-    const bIndex = POPULAR_COUNTRIES_MOBILE.indexOf(b.iso_3166_1)
+    const aIndex = POPULAR_COUNTRIES_DESKTOP.indexOf(a.iso_3166_1)
+    const bIndex = POPULAR_COUNTRIES_DESKTOP.indexOf(b.iso_3166_1)
     if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex
     if (aIndex !== -1) return -1
     if (bIndex !== -1) return 1
