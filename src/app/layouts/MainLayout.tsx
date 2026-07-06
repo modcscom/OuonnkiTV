@@ -30,11 +30,16 @@ export default function MainLayout() {
   useSubscriptionAutoRefresh()
 
   // 初始化逻辑 (从 MyRouter 迁移)
+  // 根据环境变量内容签名判断是否重新加载初始视频源，避免只加载一次后修改 env 不生效
   useEffect(() => {
-    const needsInitialization = localStorage.getItem('envSourcesInitialized') !== 'true'
-    if (needsInitialization) {
+    const currentSignature = [
+      import.meta.env.OKI_INITIAL_CONFIG || '',
+      import.meta.env.OKI_INITIAL_VIDEO_SOURCES || '',
+    ].join('::')
+    const lastSignature = localStorage.getItem('oki-env-sources-signature')
+    if (currentSignature !== lastSignature) {
       initializeEnvSources()
-      localStorage.setItem('envSourcesInitialized', 'true')
+      localStorage.setItem('oki-env-sources-signature', currentSignature)
     }
   }, [initializeEnvSources])
 
